@@ -3,7 +3,7 @@
     public class PatientsVaccineInformation
     {
         public int id { get; set; }
-        public int patient_id { get; set; }
+        public int medical_appoiment_id { get; set; }
         public string cv_prv_inj { get; set; }
         public string sp_cv_prv_inj { get; set; }
         public string cv_bfr_inj { get; set; }

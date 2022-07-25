@@ -1,0 +1,52 @@
+﻿@model Proyecto1V1.Models.SideEffects
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>SideEffects</h4>
+<hr />
+
+@{
+    List<AdvEventSymptoms> advEventSymptomsList = ViewBag.AdvEventSymptoms;
+}
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="symptoms_persists" class="control-label"></label>
+                <input asp-for="symptoms_persists" class="form-control" />
+                <span asp-validation-for="symptoms_persists" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="alergies_description" class="control-label"></label>
+                <input asp-for="alergies_description" class="form-control" />
+                <span asp-validation-for="alergies_description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="other_conditions" class="control-label"></label>
+                <input asp-for="other_conditions" class="form-control" />
+                <span asp-validation-for="other_conditions" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="dev_cancer" class="control-label"></label>
+                <input asp-for="dev_cancer" class="form-control" />
+                <span asp-validation-for="dev_cancer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

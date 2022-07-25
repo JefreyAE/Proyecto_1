@@ -1,0 +1,73 @@
+﻿@model Proyecto1V1.Models.PatientsVaccineInformation
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>PatientsVaccineInformation</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="cv_prv_inj" class="control-label"></label>
+                <input asp-for="cv_prv_inj" class="form-control" />
+                <span asp-validation-for="cv_prv_inj" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="sp_cv_prv_inj" class="control-label"></label>
+                <input asp-for="sp_cv_prv_inj" class="form-control" />
+                <span asp-validation-for="sp_cv_prv_inj" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="cv_bfr_inj" class="control-label"></label>
+                <input asp-for="cv_bfr_inj" class="form-control" />
+                <span asp-validation-for="cv_bfr_inj" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="reason_inj" class="control-label"></label>
+                <input asp-for="reason_inj" class="form-control" />
+                <span asp-validation-for="reason_inj" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="prg_cv_inj" class="control-label"></label>
+                <input asp-for="prg_cv_inj" class="form-control" />
+                <span asp-validation-for="prg_cv_inj" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="vaccine_reactions" class="control-label"></label>
+                <input asp-for="vaccine_reactions" class="form-control" />
+                <span asp-validation-for="vaccine_reactions" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="enum_reactions" class="control-label"></label>
+                <input asp-for="enum_reactions" class="form-control" />
+                <span asp-validation-for="enum_reactions" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="actual_medicines" class="control-label"></label>
+                <input asp-for="actual_medicines" class="form-control" />
+                <span asp-validation-for="actual_medicines" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="bfr_cv_medicines" class="control-label"></label>
+                <input asp-for="bfr_cv_medicines" class="form-control" />
+                <span asp-validation-for="bfr_cv_medicines" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,3 +1,4 @@
+
 CREATE DATABASE proyecto1;
 use proyecto1;
 
@@ -6,7 +7,7 @@ CREATE TABLE Patients(
 	name   nvarchar(100) NOT NULL,
 	surname_1		nvarchar(100),
 	surname_2       nvarchar(100) NOT NULL,
-    birth_date      date,
+    birth_date      nvarchar(100) NOT NULL,
 	gender			nvarchar(100) NOT NULL,
 	contact_number  nvarchar(100) NOT NULL,
 	country         nvarchar(100) NOT NULL,
@@ -16,7 +17,7 @@ CREATE TABLE Patients(
     marital_status  nvarchar(100) NOT NULL,
     phone_number    nvarchar(100) NOT NULL,
     email           nvarchar(100) NOT NULL,
-    register_date   date,
+    register_date   nvarchar(100) NOT NULL,
     occupation       nvarchar(100) NOT NULL
 );
 
@@ -44,20 +45,35 @@ CREATE TABLE Clinics(
     web_site        nvarchar(100) NOT NULL,
 );
 
+
+CREATE TABLE MedicalAppointments(
+	id	int IDENTITY(1,1) PRIMARY KEY,
+    patient_id      int NOT NULL,
+    medic_id        int NOT NULL,
+    clinic_id       int NOT NULL,
+    date            nvarchar(100) NOT NULL,
+    CONSTRAINT fk_medical_appointments_patients FOREIGN KEY (patient_id) REFERENCES Patients(id),
+    CONSTRAINT fk_medical_appointments_medics FOREIGN KEY (medic_id) REFERENCES Medics(id),
+    CONSTRAINT fk_medical_appointments_clinics FOREIGN KEY (clinic_id) REFERENCES Clinics(id)
+);
+
 CREATE TABLE Vaccines(
 	id	int IDENTITY(1,1) PRIMARY KEY,
+    medical_appoiment_id      int NOT NULL,
     name             nvarchar(100) NOT NULL,
     brand            nvarchar(100) NOT NULL,
-	application_date date NOT NULL,
+	application_date nvarchar(100) NOT NULL,
     lot_number       nvarchar(100) NOT NULL,
-	expiration_date	 date NOT NULL,
+	expiration_date	 nvarchar(100) NOT NULL,
 	application_place		nvarchar(100),
-    observations    nvarchar(255) NOT NULL
+    observations    nvarchar(255) NOT NULL,
+    CONSTRAINT fk_vacines_medical_appointments FOREIGN KEY (medical_appoiment_id) REFERENCES MedicalAppointments(id),
 );
+
 
 CREATE TABLE PatientsVaccineInformation(
 	id	int IDENTITY(1,1) PRIMARY KEY,
-    patient_id      int NOT NULL,
+    medical_appoiment_id      int NOT NULL,
     cv_prv_inj      nvarchar(15) NOT NULL,
 	sp_cv_prv_inj   nvarchar(15) NOT NULL,
     cv_bfr_inj      nvarchar(15) NOT NULL,
@@ -67,26 +83,18 @@ CREATE TABLE PatientsVaccineInformation(
     enum_reactions   nvarchar(255),
     actual_medicines nvarchar(255) NOT NULL,
     bfr_cv_medicines nvarchar(255) NOT NULL,
-    CONSTRAINT fk_patients_vaccine_information_patients FOREIGN KEY (patient_id) REFERENCES Patients(id)
+    CONSTRAINT fk_patients_vaccine_information_medical_appointments FOREIGN KEY (medical_appoiment_id) REFERENCES MedicalAppointments(id),
 );
 
-CREATE TABLE MedicalAppointments(
-	id	int IDENTITY(1,1) PRIMARY KEY,
-    patient_id      int NOT NULL,
-    medic_id        int NOT NULL,
-    date            date NOT NULL,
-    CONSTRAINT fk_medical_appointments_patients FOREIGN KEY (patient_id) REFERENCES Patients(id),
-    CONSTRAINT fk_medical_appointments_medics FOREIGN KEY (medic_id) REFERENCES Medics(id)
-);
 
 CREATE TABLE SideEffects(
 	id	int IDENTITY(1,1) PRIMARY KEY,
-    medical_appointments_id int not null,
+    medical_appoiment_id int not null,
     symptoms_persists     nvarchar(15),
     alergies_description  nvarchar(255),
     other_conditions      nvarchar(255),
     dev_cancer            nvarchar(255),
-    CONSTRAINT fk_side_effects_medical_appointments FOREIGN KEY (medical_appointments_id) REFERENCES MedicalAppointments(id),
+    CONSTRAINT fk_side_effects_medical_appointments FOREIGN KEY (medical_appoiment_id) REFERENCES MedicalAppointments(id),
 );
 
 CREATE TABLE AdvEventSymptoms(

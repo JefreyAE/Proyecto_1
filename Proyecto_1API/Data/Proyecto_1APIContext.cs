@@ -14,8 +14,6 @@ namespace Proyecto_1API.Data
         {
         }
 
-        public DbSet<Proyecto_1API.Models.Patients>? Patients { get; set; }
-
         public DbSet<Proyecto_1API.Models.AdvEventSymptoms>? AdvEventSymptoms { get; set; }
 
         public DbSet<Proyecto_1API.Models.Alergies>? Alergies { get; set; }
@@ -35,5 +33,11 @@ namespace Proyecto_1API.Data
         public DbSet<Proyecto_1API.Models.Symptoms>? Symptoms { get; set; }
 
         public DbSet<Proyecto_1API.Models.Vaccines>? Vaccines { get; set; }
-    }
+
+        public DbSet<Proyecto_1API.Models.Patients>? Patients { get; set; }
+
+        //Tables de relaciones de muchos a muchos
+        public DbSet<Proyecto_1API.Models.rel_effects_event_symptoms>? rel_effects_event_symptoms  { get; set; }
+
+}
 }

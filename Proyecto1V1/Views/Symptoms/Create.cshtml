@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Registre los sintomas experimentados</h4>
+<hr />
+
+@{
+    List<Symptoms> symptomsList = ViewBag.Symptoms;
+}
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <label class="control-label">¿Desde la inyección de COVID, ha tenido alguno de los siguientes
+síntomas? (marque todas las que
+correspondan):</label>
+            @foreach(var item in symptomsList){
+                <div class="form-group">
+                    <input type="checkbox" name="adv-@item.id" value="@item.id">
+                    <label for="adv-@item.id">@item.description</label><br>
+                </div>
+            }
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

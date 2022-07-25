@@ -3,6 +3,7 @@
     public class Vaccines
     {
         public int id { get; set; }
+        public int medical_appoiment_id { get; set; }
         public string name { get; set; }
         public string brand { get; set; }
         public string application_date { get; set; }

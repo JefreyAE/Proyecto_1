@@ -29,6 +29,9 @@ namespace Proyecto_1API.Controllers
           {
               return NotFound();
           }
+            var c = _context.Patients;
+
+ 
             return await _context.Patients.ToListAsync();
         }
 

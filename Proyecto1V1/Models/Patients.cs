@@ -1,4 +1,6 @@
-﻿namespace Proyecto_1API.Models
+﻿using Proyecto1V1.Services;
+
+namespace Proyecto1V1.Models
 {
     public class Patients
     {
@@ -18,6 +20,26 @@
         public string email { get; set; }
         public string register_date { get; set; }
         public string occupation { get; set; }
+
+        private PatientsService _patientsServices = new PatientsService();
+        public Patients()
+        {
+            
+        }
+
+        public async Task<IEnumerable<Patients>> GetPatients()
+        {
+            IEnumerable<Patients> patients_list = await this._patientsServices.getList();
+            return patients_list;
+        }
+
+        public async Task<Patients> Save()
+        {
+            var result = await this._patientsServices.save(this);
+
+            return result;
+        }
+        
 
     }
 }

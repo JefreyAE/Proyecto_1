@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Proyecto_1API.Data;
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddDbContext<Proyecto_1APIContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Proyecto_1APIContext") ?? throw new InvalidOperationException("Connection string 'Proyecto_1APIContext' not found.")));
 
