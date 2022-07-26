@@ -23,4 +23,25 @@
         //public SideEffects? SideEffects { get; set; }   
     }
 
+    public class rel_effects_alergies
+    {
+        public int id { get; set; }
+        public int side_effects_id { get; set; }
+        public int alergies_id { get; set; }
+    }
+
+    public class rel_effects_diseases
+    {
+        public int id { get; set; }
+        public int side_effects_id { get; set; }
+        public int new_diseases_id { get; set; }
+    }
+
+    public class rel_effects_symptoms
+    {
+        public int id { get; set; }
+        public int side_effects_id { get; set; }
+        public int symptoms_id { get; set; }
+    }
+
 }

@@ -31,20 +31,37 @@ namespace Proyecto1V1.Controllers
         {
             try
             {
+                string submit_type = collection["submit1"];
                 Clinics clinic = new Clinics();
-                clinic.name = collection["name"];
-                clinic.legal_certificate = collection["legal_certificate"];
-                clinic.country = collection["country"];
-                clinic.province = collection["province"];
-                clinic.canton = collection["canton"];
-                clinic.district = collection["district"];
-                clinic.phone_number = collection["phone_number"];
-                clinic.email = collection["email"];
-                clinic.web_site = collection["web_site"];
+                if (submit_type != null)
+                {
+                    clinic.name = collection["name"];
+                    clinic.legal_certificate = collection["legal_certificate"];
+                    clinic.country = collection["country"];
+                    clinic.province = collection["province"];
+                    clinic.canton = collection["canton"];
+                    clinic.district = collection["district"];
+                    clinic.phone_number = collection["phone_number"];
+                    clinic.email = collection["email"];
+                    clinic.web_site = collection["web_site"];
+                }
+                else
+                {
+                    clinic.name = "no-data";
+                    clinic.legal_certificate = "no-data";
+                    clinic.country = "no-data";
+                    clinic.province = "no-data";
+                    clinic.canton = "no-data";
+                    clinic.district = "no-data";
+                    clinic.phone_number = "no-data";
+                    clinic.email = "no-data";
+                    clinic.web_site = "no-data";
+                }
+
                 var c = await clinic.Save();
                 HttpContext.Session.SetInt32("clinic_id", c.id);
 
-                return RedirectToAction("Create","Patients");
+                return RedirectToAction("Create", "Patients");
             }
             catch
             {

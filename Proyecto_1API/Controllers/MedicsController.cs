@@ -50,6 +50,44 @@ namespace Proyecto_1API.Controllers
             return medics;
         }
 
+        //[Route("Medics/id_number/{id_number}")] 
+        [HttpGet("id_number/{id_number}")]
+        public async Task<ActionResult<Medics>> GetMedicsByIdNumber(string? id_number)
+        {
+            if (_context.Medics == null)
+            {
+                return NotFound();
+            }
+
+            var medics = await _context.Medics.SingleOrDefaultAsync(s => s.id_number == id_number);
+
+            if (medics == null)
+            {
+                return NotFound();
+            }
+
+            return medics;
+        }
+
+        //[Route("Medics/professional_code/{code}")] 
+        [HttpGet("professional_code/{code}")]
+        public async Task<ActionResult<Medics>> GetMedicsByIdProfessionalCode(string? code)
+        {
+            if (_context.Medics == null)
+            {
+                return NotFound();
+            }
+
+            var medics = await _context.Medics.SingleOrDefaultAsync(s => s.professional_code == code);
+
+            if (medics == null)
+            {
+                return NotFound();
+            }
+
+            return medics;
+        }
+
         // PUT: api/Medics/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

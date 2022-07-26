@@ -24,7 +24,14 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin());
+
 app.UseAuthorization();
+
+/*app.MapControllerRoute(
+    name: "medicByIdNumber",
+    pattern: "Medic/id_number/{id_number}",
+    defaults: new { controller = "Medics", action = "GetMedicsByIdNumber" });*/
 
 app.MapControllers();
 

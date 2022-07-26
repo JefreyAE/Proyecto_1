@@ -43,7 +43,16 @@ namespace Proyecto1V1.Controllers
                 var v = await vaccine.Save();
                 HttpContext.Session.SetInt32("vaccine_id", v.id);
 
-                return RedirectToAction("Create", "PatientsVaccineInformation");
+                string submit_type = collection["submit1"];
+                if(submit_type != null)
+                {
+                    return RedirectToAction("Create", "PatientsVaccineInformation");
+                }
+                else
+                {
+                    return View();
+                }
+                
             }
             catch(Exception ex)
             {

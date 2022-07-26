@@ -1,10 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Enfermedades";
 }
 
-<h1>Create</h1>
+<h1>Registro de nuevas enfermedades</h1>
 
-<h4>Si a experimentado alguna nueva enfermedad despues de la inyección de COVID</h4>
+<h4>Nuevas enfermedades desde su inyección de COVID (marque todas las que
+correspondan):</h4>
 <hr />
 
 @{
@@ -16,21 +17,19 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <label class="control-label">Nuevas enfermedades desde su inyección de COVID (marque todas las que
 correspondan):</label>
+            <br />
             @foreach(var item in newDiseasesList){
                 <div class="form-group">
                     <input type="checkbox" name="adv-@item.id" value="@item.id">
                     <label for="adv-@item.id">@item.description</label><br>
                 </div>
             }
+            <br />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Registrar y continuar" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

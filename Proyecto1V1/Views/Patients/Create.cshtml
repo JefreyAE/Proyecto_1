@@ -1,102 +1,112 @@
 ﻿@model Proyecto1V1.Models.Patients
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Registro de pacientes";
 }
 
-<h1>Create</h1>
+<h1>Registro de pacientes</h1>
 
-<h4>Patients</h4>
+<h4>Registre los datos del paciente</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form id="patient_form" asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
             <div class="form-group">
-                <label asp-for="name" class="control-label"></label>
+                <label asp-for="id_number" class="control-label">Número de cédula</label>
+                <input asp-for="id_number" class="form-control" />
+                <span asp-validation-for="id_number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="name" class="control-label">Nombre</label>
                 <input asp-for="name" class="form-control" />
                 <span asp-validation-for="name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="surname_1" class="control-label"></label>
+                <label asp-for="surname_1" class="control-label">Primer apellido</label>
                 <input asp-for="surname_1" class="form-control" />
                 <span asp-validation-for="surname_1" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="surname_2" class="control-label"></label>
+                <label asp-for="surname_2" class="control-label">Segundo apellido</label>
                 <input asp-for="surname_2" class="form-control" />
                 <span asp-validation-for="surname_2" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="birth_date" class="control-label"></label>
-                <input asp-for="birth_date" class="form-control" />
+                <label asp-for="birth_date" class="control-label">Fecha de nacimiento</label>
+                <input type="date" asp-for="birth_date" class="form-control" />
                 <span asp-validation-for="birth_date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="gender" class="control-label"></label>
-                <input asp-for="gender" class="form-control" />
+                <label asp-for="gender" class="control-label">Genero:</label>
+                <select asp-for="gender" class="form-control" >
+                    <option value="male">Masculino</option>
+                    <option value="female">Femenino</option>
+                    <option value="other">Otro</option>
+                </select>
                 <span asp-validation-for="gender" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="contact_number" class="control-label"></label>
+                <label asp-for="contact_number" class="control-label">Número de contacto</label>
                 <input asp-for="contact_number" class="form-control" />
                 <span asp-validation-for="contact_number" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="country" class="control-label"></label>
+                <label asp-for="country" class="control-label">País</label>
                 <input asp-for="country" class="form-control" />
                 <span asp-validation-for="country" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="province" class="control-label"></label>
+                <label asp-for="province" class="control-label">Provincia</label>
                 <input asp-for="province" class="form-control" />
                 <span asp-validation-for="province" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="canton" class="control-label"></label>
+                <label asp-for="canton" class="control-label">Cantón</label>
                 <input asp-for="canton" class="form-control" />
                 <span asp-validation-for="canton" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="district" class="control-label"></label>
+                <label asp-for="district" class="control-label">Distrito</label>
                 <input asp-for="district" class="form-control" />
                 <span asp-validation-for="district" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="marital_status" class="control-label"></label>
-                <input asp-for="marital_status" class="form-control" />
+                <label asp-for="marital_status" class="control-label">Estado civil</label>
+                <select asp-for="marital_status" class="form-control">
+                    <option value="single">Soltero/a</option>
+                    <option value="married">Casado/a</option>
+                    <option value="divorced">Divorciado/a</option>
+                    <option value="widower">Viudo/a</option>
+                </select>
                 <span asp-validation-for="marital_status" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="phone_number" class="control-label"></label>
+                <label asp-for="phone_number" class="control-label">Teléfono</label>
                 <input asp-for="phone_number" class="form-control" />
                 <span asp-validation-for="phone_number" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="email" class="control-label"></label>
-                <input asp-for="email" class="form-control" />
+                <label asp-for="email" class="control-label">Correo electrónico</label>
+                <input type="email" asp-for="email" class="form-control" />
                 <span asp-validation-for="email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="register_date" class="control-label"></label>
-                <input asp-for="register_date" class="form-control" />
+                <label asp-for="register_date" class="control-label">Fecha de registro</label>
+                <input type="date" asp-for="register_date" class="form-control" />
                 <span asp-validation-for="register_date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="occupation" class="control-label"></label>
+                <label asp-for="occupation" class="control-label">Ocupación</label>
                 <input asp-for="occupation" class="form-control" />
                 <span asp-validation-for="occupation" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Registrar" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

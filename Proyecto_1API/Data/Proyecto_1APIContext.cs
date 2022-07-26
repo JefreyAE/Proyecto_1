@@ -39,5 +39,14 @@ namespace Proyecto_1API.Data
         //Tables de relaciones de muchos a muchos
         public DbSet<Proyecto_1API.Models.rel_effects_event_symptoms>? rel_effects_event_symptoms  { get; set; }
 
+        //Tables de relaciones de muchos a muchos
+        public DbSet<Proyecto_1API.Models.rel_effects_alergies>? rel_effects_alergies { get; set; }
+
+        //Tables de relaciones de muchos a muchos
+        public DbSet<Proyecto_1API.Models.rel_effects_diseases>? rel_effects_diseases { get; set; }
+
+        //Tables de relaciones de muchos a muchos
+        public DbSet<Proyecto_1API.Models.rel_effects_symptoms>? rel_effects_symptoms { get; set; }
+
 }
 }

@@ -1,62 +1,60 @@
 ﻿@model Proyecto1V1.Models.Vaccines
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Registro de vacunas aplicadas";
 }
 
-<h1>Create</h1>
+<h1>Registro de vacunas aplicadas</h1>
 
-<h4>Vaccines</h4>
+<h4>Registre las vacunas de COVID que fueron aplicadas al paciente:</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-           
             <div class="form-group">
-                <label asp-for="name" class="control-label"></label>
+                <label asp-for="name" class="control-label">Nombre</label>
                 <input asp-for="name" class="form-control" />
                 <span asp-validation-for="name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="brand" class="control-label"></label>
+                <label asp-for="brand" class="control-label">Marca</label>
                 <input asp-for="brand" class="form-control" />
                 <span asp-validation-for="brand" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="application_date" class="control-label"></label>
-                <input asp-for="application_date" class="form-control" />
+                <label asp-for="application_date" class="control-label">Fecha de aplicación</label>
+                <input type="date" asp-for="application_date" class="form-control" />
                 <span asp-validation-for="application_date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="lot_number" class="control-label"></label>
+                <label asp-for="lot_number" class="control-label">Número de lote</label>
                 <input asp-for="lot_number" class="form-control" />
                 <span asp-validation-for="lot_number" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="expiration_date" class="control-label"></label>
-                <input asp-for="expiration_date" class="form-control" />
+                <label asp-for="expiration_date" class="control-label">Fecha de vencimiento</label>
+                <input type="date" asp-for="expiration_date" class="form-control" />
                 <span asp-validation-for="expiration_date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="application_place" class="control-label"></label>
+                <label asp-for="application_place" class="control-label">Lugar de aplicación</label>
                 <input asp-for="application_place" class="form-control" />
                 <span asp-validation-for="application_place" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="observations" class="control-label"></label>
-                <input asp-for="observations" class="form-control" />
+                <label asp-for="observations" class="control-label">Observaciónes</label>
+                <textarea asp-for="observations" class="form-control"></textarea>
                 <span asp-validation-for="observations" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" name="submit1" value="Registrar vacuna y continuar" class="btn btn-primary" />
+                <input type="submit" name="submit2" class="btn btn-success"  value="Registrar y agregar otra vacuna"/>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
+    
 </div>
 
 @section Scripts {

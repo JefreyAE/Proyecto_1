@@ -1,10 +1,11 @@
 ﻿@{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Efectos adversos";
 }
 
-<h1>Create</h1>
+<h1>Registro de los resultados de los efectos adversos</h1>
 
-<h4>Registre los resultados de los efectos adversos</h4>
+<h4>Resultado del evento adverso o de los síntomas (marque todo lo que
+corresponda):</h4>
 <hr />
 
 @{
@@ -16,22 +17,21 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <label class="control-label">Resultado del evento adverso o de los síntomas (marque todo lo que
 corresponda):</label>
+            <br />
             @foreach(var item in advEventSymptomsList){
                 <div class="form-group">
                     <input type="checkbox" name="adv-@item.id" value="@item.id">
                     <label for="adv-@item.id">@item.description</label><br>
                 </div>
             }
+            <br />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Registrar y continuar" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

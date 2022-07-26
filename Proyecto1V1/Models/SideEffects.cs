@@ -64,9 +64,6 @@ namespace Proyecto1V1.Models
 
             return result;
         }
-
-
-
     }
 
     public class rel_effects_event_symptoms

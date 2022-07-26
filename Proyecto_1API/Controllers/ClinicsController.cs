@@ -50,6 +50,40 @@ namespace Proyecto_1API.Controllers
             return clinics;
         }
 
+        [HttpGet("legal_certificate/{id}")]
+        public async Task<ActionResult<Clinics>> GetClinicsByCertificate(string? id)
+        {
+            if (_context.Clinics == null)
+            {
+                return NotFound();
+            }
+            var clinic = await _context.Clinics.SingleOrDefaultAsync(s => s.legal_certificate == id);
+
+            if (clinic == null)
+            {
+                return NotFound();
+            }
+
+            return clinic;
+        }
+
+        [HttpGet("clinic_name/{name}")]
+        public async Task<ActionResult<Clinics>> GetClinicsByName(string? name)
+        {
+            if (_context.Clinics == null)
+            {
+                return NotFound();
+            }
+            var clinic = await _context.Clinics.SingleOrDefaultAsync(s => s.name == name);
+
+            if (clinic == null)
+            {
+                return NotFound();
+            }
+
+            return clinic;
+        }
+
         // PUT: api/Clinics/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]

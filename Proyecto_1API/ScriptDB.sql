@@ -4,6 +4,7 @@ use proyecto1;
 
 CREATE TABLE Patients(
 	id	int IDENTITY(1,1) PRIMARY KEY,
+    id_number       nvarchar(100) NOT NULL,
 	name   nvarchar(100) NOT NULL,
 	surname_1		nvarchar(100),
 	surname_2       nvarchar(100) NOT NULL,

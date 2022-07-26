@@ -36,6 +36,7 @@ namespace Proyecto1V1.Controllers
             try
             {
                 Patients patient = new Patients();
+                patient.id_number = collection["id_number"];
                 patient.name = collection["name"];
                 patient.surname_1 = collection["surname_1"];
                 patient.surname_2 = collection["surname_2"];

@@ -1,12 +1,12 @@
 ﻿@model Proyecto1V1.Models.SideEffects
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Efectos secundarios";
 }
 
-<h1>Create</h1>
+<h1>Registro de efectos secundarios</h1>
 
-<h4>SideEffects</h4>
+<h4>Registro de los efectos adversos</h4>
 <hr />
 
 @{
@@ -17,34 +17,35 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="symptoms_persists" class="control-label"></label>
-                <input asp-for="symptoms_persists" class="form-control" />
+                <label asp-for="symptoms_persists" class="control-label">¿Se mantiene los síntomas?</label>
+                <select asp-for="symptoms_persists" class="form-control">
+                    <option value="yes">Si</option>
+                    <option value="no">No</option>
+                </select>
                 <span asp-validation-for="symptoms_persists" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="alergies_description" class="control-label"></label>
-                <input asp-for="alergies_description" class="form-control" />
+                <label asp-for="alergies_description" class="control-label">Descripción de alergias conocidas</label>
+                <textarea asp-for="alergies_description" class="form-control"></textarea>
                 <span asp-validation-for="alergies_description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="other_conditions" class="control-label"></label>
-                <input asp-for="other_conditions" class="form-control" />
+                <label asp-for="other_conditions" class="control-label">Especifique otras condiciones</label>
+                <textarea asp-for="other_conditions" class="form-control"></textarea>
                 <span asp-validation-for="other_conditions" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="dev_cancer" class="control-label"></label>
-                <input asp-for="dev_cancer" class="form-control" />
+                <label asp-for="dev_cancer" class="control-label">¿Si ha desarrollado un nuevo cáncer o la reaparición de un cáncer existente
+después de la inyección de COVID, especifique el tipo de cáncer?</label>
+                <textarea asp-for="dev_cancer" class="form-control"></textarea>
                 <span asp-validation-for="dev_cancer" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Registrar y finalizar" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

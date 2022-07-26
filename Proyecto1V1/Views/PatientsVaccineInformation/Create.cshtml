@@ -1,71 +1,86 @@
 ﻿@model Proyecto1V1.Models.PatientsVaccineInformation
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Registro de información";
 }
 
-<h1>Create</h1>
+<h1>Registro de información</h1>
 
-<h4>PatientsVaccineInformation</h4>
+<h4>Registre la información relacionada al COVID previo a haberse aplicado la vacuna.</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="cv_prv_inj" class="control-label"></label>
-                <input asp-for="cv_prv_inj" class="form-control" />
+                <label asp-for="cv_prv_inj" class="control-label">¿Ha tenido COVID previo a inyectarse?</label>
+                <select asp-for="cv_prv_inj" class="form-control">
+                    <option value="yes">Si</option>
+                    <option value="no">No</option>
+                </select>
                 <span asp-validation-for="cv_prv_inj" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="sp_cv_prv_inj" class="control-label"></label>
-                <input asp-for="sp_cv_prv_inj" class="form-control" />
+                <label asp-for="sp_cv_prv_inj" class="control-label">¿Ha tenido sospecha de haber tenido COVID antes de ponerte la
+inyección?</label>
+                <select asp-for="sp_cv_prv_inj" class="form-control">
+                    <option value="yes">Si</option>
+                    <option value="no">No</option>
+                </select>
                 <span asp-validation-for="sp_cv_prv_inj" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="cv_bfr_inj" class="control-label"></label>
-                <input asp-for="cv_bfr_inj" class="form-control" />
+                <label asp-for="cv_bfr_inj" class="control-label">¿Ha tenido COVID después de tomar la inyección?</label>
+                <select asp-for="cv_bfr_inj" class="form-control">
+                    <option value="yes">Si</option>
+                    <option value="no">No</option>
+                </select>
                 <span asp-validation-for="cv_bfr_inj" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="reason_inj" class="control-label"></label>
-                <input asp-for="reason_inj" class="form-control" />
+                <label asp-for="reason_inj" class="control-label">¿Razón de inyectarse contra COVID?</label>
+                <textarea asp-for="reason_inj" class="form-control"></textarea>
                 <span asp-validation-for="reason_inj" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="prg_cv_inj" class="control-label"></label>
-                <input asp-for="prg_cv_inj" class="form-control" />
+                <label asp-for="prg_cv_inj" class="control-label">¿Estaba embarazada al inyectarse contra COVID? Si aplica</label>
+                <select asp-for="prg_cv_inj" class="form-control">
+                    <option value="yes">Si</option>
+                    <option value="no">No</option>
+                </select>
                 <span asp-validation-for="prg_cv_inj" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="vaccine_reactions" class="control-label"></label>
-                <input asp-for="vaccine_reactions" class="form-control" />
+                <label asp-for="vaccine_reactions" class="control-label">¿Ha tenido reacciones a vacunas en el pasado?</label>
+                <select asp-for="vaccine_reactions" class="form-control">
+                    <option value="yes">Si</option>
+                    <option value="no">No</option>
+                </select>
                 <span asp-validation-for="vaccine_reactions" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="enum_reactions" class="control-label"></label>
-                <input asp-for="enum_reactions" class="form-control" />
+                <label asp-for="enum_reactions" class="control-label">Especifique las reacciones a vacunas en el pasado. Si aplica</label>
+                <textarea asp-for="enum_reactions" class="form-control"></textarea>
                 <span asp-validation-for="enum_reactions" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="actual_medicines" class="control-label"></label>
-                <input asp-for="actual_medicines" class="form-control" />
+                <label asp-for="actual_medicines" class="control-label">Medicamentos actuales con receta: enumere todos los medicamentos y las
+dosis</label>
+                <textarea asp-for="actual_medicines" class="form-control"></textarea>
                 <span asp-validation-for="actual_medicines" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="bfr_cv_medicines" class="control-label"></label>
-                <input asp-for="bfr_cv_medicines" class="form-control" />
+                <label asp-for="bfr_cv_medicines" class="control-label">Nuevos medicamentos recetados que tuvieron que ser iniciados después
+de la(s) inyección(es) de COVID</label>
+                <textarea asp-for="bfr_cv_medicines" class="form-control"></textarea>
                 <span asp-validation-for="bfr_cv_medicines" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Registrar información previa a la vacuna" class="btn btn-primary" />
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

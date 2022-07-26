@@ -5,6 +5,7 @@ namespace Proyecto1V1.Models
     public class Patients
     {
         public int id { get; set; }
+        public string id_number { get; set; }
         public string name { get; set; }
         public string surname_1 { get; set; }
         public string surname_2 { get; set; }
