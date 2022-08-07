@@ -28,5 +28,12 @@ namespace Proyecto1V1.Models
 
             return result;
         }
+
+        public async Task<AdvEventSymptoms> Get(int id)
+        {
+            var result = await this._advEventSymptomsService.get(id);
+
+            return result;
+        }
     }
 }

@@ -21,5 +21,12 @@ namespace Proyecto1V1.Models
             IEnumerable<NewDiseases> newDiseases_list = await this._newDiseasesService.getList();
             return newDiseases_list;
         }
+
+        public async Task<NewDiseases> Get(int id)
+        {
+            var result = await this._newDiseasesService.get(id);
+
+            return result;
+        }
     }
 }

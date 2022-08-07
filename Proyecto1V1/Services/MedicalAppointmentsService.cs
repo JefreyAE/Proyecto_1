@@ -41,5 +41,15 @@ namespace Proyecto1V1.Services
 
         }
 
+        public async Task<MedicalAppointments> get(int? id)
+        {
+            var response = await client.GetAsync("api/MedicalAppointments/" + id);
+            var json_response = await response.Content.ReadAsStringAsync();
+
+            var result = JsonConvert.DeserializeObject<MedicalAppointments>(json_response);
+
+            return result;
+        }
+
     }
 }

@@ -1,11 +1,19 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Proyecto1V1.Helpers;
 using Proyecto1V1.Models;
 
 namespace Proyecto1V1.Controllers
 {
     public class PatientsController : Controller
     {
+        public IMailService _mailService;
+
+        public PatientsController(IMailService mailService)
+        {
+            this._mailService = mailService;
+        }
+
         // GET: PatientsControllercs
         public async Task<ActionResult> Index()
         {
@@ -53,8 +61,19 @@ namespace Proyecto1V1.Controllers
                 patient.register_date = collection["register_date"];
                 patient.occupation = collection["occupation"];
 
-                var p = await patient.Save();
-                HttpContext.Session.SetInt32("patient_id", p.id);
+                if (collection["id"] == "")
+                {
+                    var p = await patient.Save();
+                    HttpContext.Session.SetInt32("patient_id", p.id);
+                }
+                else
+                {
+                    patient.id = Convert.ToInt32(collection["id"]);
+                    var m = await patient.Update(Convert.ToInt32(collection["id"]));
+                    HttpContext.Session.SetInt32("patient_id", patient.id);
+                }
+
+                //_mailService.SendEmail(collection["email"], "Registrado en el sistema de control de vacunación COVID", "Como resultado de una consulta ha sido registrado en el sistema");
 
                 return RedirectToAction("RedirectedCreate", "MedicalAppointments");
             }

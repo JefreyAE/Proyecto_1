@@ -36,6 +36,26 @@ namespace Proyecto_1API.Controllers
         }
 
         // GET: api/Patients/5
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Patients>> GetPatientById(string? id)
+        {
+            if (_context.Patients == null)
+            {
+                return NotFound();
+            }
+            var patient = await _context.Patients.SingleOrDefaultAsync(s => s.id == Convert.ToInt32(id));
+
+            if (patient == null)
+            {
+                return NotFound();
+            }
+
+            return patient;
+        }
+
+
+
+        // GET: api/Patients/patient/5
         [HttpGet("patient/{id}")]
         public async Task<ActionResult<Patients>> GetPatientByIdNumber(string? id)
         {

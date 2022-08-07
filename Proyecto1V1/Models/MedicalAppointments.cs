@@ -33,5 +33,12 @@ namespace Proyecto1V1.Models
 
             return result;
         }
+
+        public async Task<MedicalAppointments> Get(int? id)
+        {
+            var result = await this._medicalServices.get(id);
+
+            return result;
+        }
     }
 }

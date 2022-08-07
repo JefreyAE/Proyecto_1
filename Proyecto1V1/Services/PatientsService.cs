@@ -32,12 +32,35 @@ namespace Proyecto1V1.Services
             return result;
         }
 
+        public async Task<Patients> update(int id, Patients patient)
+        {
+            var json = JsonConvert.SerializeObject(patient);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await client.PutAsync("api/Patients/"+id, content);
+            var json_response = await response.Content.ReadAsStringAsync();
+
+            var result = JsonConvert.DeserializeObject<Patients>(json_response);
+
+            return result;
+        }
+
         public async Task<IEnumerable<Patients>> getList()
         {
             var response = await client.GetAsync("api/Patients");
             var json_response = await response.Content.ReadAsStringAsync();
 
             var result = JsonConvert.DeserializeObject<IEnumerable<Patients>>(json_response);
+
+            return result;
+        }
+
+        public async Task<Patients> get(int? id)
+        {
+            var response = await client.GetAsync("api/Patients/" + id);
+            var json_response = await response.Content.ReadAsStringAsync();
+
+            var result = JsonConvert.DeserializeObject<Patients>(json_response);
 
             return result;
         }

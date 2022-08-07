@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Proyecto1V1.Models;
 
 namespace Proyecto1V1.Controllers
@@ -42,6 +43,20 @@ namespace Proyecto1V1.Controllers
                 vaccine.observations = collection["observations"];
                 var v = await vaccine.Save();
                 HttpContext.Session.SetInt32("vaccine_id", v.id);
+
+
+                var vaccines = HttpContext.Session.GetString("vaccines");
+                List<Vaccines> vaccinesList = new List<Vaccines>();
+                if(vaccines != null)
+                {
+                    vaccinesList = JsonConvert.DeserializeObject<List<Vaccines>>(vaccines);
+                }             
+                
+                vaccinesList.Add(v);
+               
+                var result = JsonConvert.SerializeObject(vaccinesList);
+                HttpContext.Session.SetString("vaccines", result);
+
 
                 string submit_type = collection["submit1"];
                 if(submit_type != null)

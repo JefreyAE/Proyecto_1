@@ -78,18 +78,6 @@ namespace Proyecto1V1.Services
             return result;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
         public async Task<IEnumerable<SideEffects>> getList()
         {
             var response = await client.GetAsync("api/SideEffects");
@@ -98,6 +86,16 @@ namespace Proyecto1V1.Services
 
             return result;
 
+        }
+
+        public async Task<SideEffects> get(int? id)
+        {
+            var response = await client.GetAsync("api/SideEffects/" + id);
+            var json_response = await response.Content.ReadAsStringAsync();
+
+            var result = JsonConvert.DeserializeObject<SideEffects>(json_response);
+
+            return result;
         }
     }
 }

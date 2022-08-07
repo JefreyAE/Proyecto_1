@@ -44,5 +44,32 @@ namespace Proyecto1V1.Models
 
             return result;
         }
+        public async Task<Clinics> Update(int id)
+        {
+            var result = await this._clinicsServices.update(id, this);
+
+            return result;
+        }
+
+        public async Task<Clinics> Get(int? id)
+        {
+            var result = await this._clinicsServices.get(id);
+
+            return result;
+        }
+
+        public async Task<Clinics> GetByName(string? name)
+        {
+            var result = await this._clinicsServices.getByName(name);
+
+            return result;
+        }
+
+        public async Task<Clinics> GetByLegal_certificate(string? id)
+        {
+            var result = await this._clinicsServices.getByLegal_certificate(id);
+
+            return result;
+        }
     }
 }

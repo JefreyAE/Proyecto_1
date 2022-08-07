@@ -24,5 +24,15 @@ namespace Proyecto1V1.Services
 
             return result;
         }
+
+        public async Task<Symptoms> get(int? id)
+        {
+            var response = await client.GetAsync("api/Symptoms/" + id);
+            var json_response = await response.Content.ReadAsStringAsync();
+
+            var result = JsonConvert.DeserializeObject<Symptoms>(json_response);
+
+            return result;
+        }
     }
 }

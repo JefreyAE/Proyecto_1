@@ -21,5 +21,12 @@ namespace Proyecto1V1.Models
             IEnumerable<Alergies> alergies_list = await this._alergiesService.getList();
             return alergies_list;
         }
+
+        public async Task<Alergies> Get(int id)
+        {
+            var result = await this._alergiesService.get(id);
+
+            return result;
+        }
     }
 }

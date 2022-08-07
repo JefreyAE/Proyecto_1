@@ -1,11 +1,20 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Proyecto1V1.Helpers;
 using Proyecto1V1.Models;
 
 namespace Proyecto1V1.Controllers
 {
     public class ClinicsController : Controller
     {
+
+        public IMailService _mailService;
+
+        public ClinicsController(IMailService mailService)
+        {
+            this._mailService = mailService;
+        }
+
         // GET: ClinicsController
         public ActionResult Index()
         {
@@ -44,6 +53,37 @@ namespace Proyecto1V1.Controllers
                     clinic.phone_number = collection["phone_number"];
                     clinic.email = collection["email"];
                     clinic.web_site = collection["web_site"];
+
+                    if (collection["id"] == "")
+                    {                    
+                        var existClinicName = await clinic.GetByName(collection["name"]);
+                        var existClinicLegalCert = await clinic.GetByLegal_certificate(collection["legal_certificate"]);
+
+                        if (existClinicName.id == 0 && existClinicLegalCert.id != 0)
+                        {
+                            clinic.id = existClinicLegalCert.id;
+                            var m1 = await clinic.Update(existClinicLegalCert.id);
+                            HttpContext.Session.SetInt32("clinic_id", clinic.id);
+                        }
+                        else if (existClinicName.id != 0 && existClinicLegalCert.id == 0)
+                        {
+                            clinic.id = existClinicName.id;
+                            var m2 = await clinic.Update(existClinicName.id);
+                            HttpContext.Session.SetInt32("clinic_id", clinic.id);
+                        }
+                        else
+                        {
+                            var m = await clinic.Save();
+                            HttpContext.Session.SetInt32("clinic_id", m.id);
+                        }
+                    }
+                    else
+                    {
+                        clinic.id = Convert.ToInt32(collection["id"]);
+                        var m = await clinic.Update(Convert.ToInt32(collection["id"]));
+                        HttpContext.Session.SetInt32("clinic_id", clinic.id);
+                    }
+                    _mailService.SendEmail(collection["email"], "Se ha registrado la clínica", "Como resultado de una consulta se ha registrado la clínica en el sistema, debido a una consulta.");
                 }
                 else
                 {
@@ -58,12 +98,9 @@ namespace Proyecto1V1.Controllers
                     clinic.web_site = "no-data";
                 }
 
-                var c = await clinic.Save();
-                HttpContext.Session.SetInt32("clinic_id", c.id);
-
                 return RedirectToAction("Create", "Patients");
             }
-            catch
+            catch(Exception ex)
             {
                 return View();
             }

@@ -37,10 +37,21 @@ namespace Proyecto1V1.Models
         public async Task<Patients> Save()
         {
             var result = await this._patientsServices.save(this);
+            return result;
+        }
+
+        public async Task<Patients> Update(int id)
+        {
+            var result = await this._patientsServices.update(id, this);
+            return result;
+        }
+
+        public async Task<Patients> Get(int? id)
+        {
+            var result = await this._patientsServices.get(id);
 
             return result;
         }
-        
 
     }
 }

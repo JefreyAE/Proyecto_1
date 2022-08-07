@@ -37,6 +37,13 @@ namespace Proyecto1V1.Models
             return result;
         }
 
+        public async Task<SideEffects> Get(int? id)
+        {
+            var result = await this._sideEffectsService.get(id);
+
+            return result;
+        }
+
         public async Task<rel_effects_event_symptoms> SaveAdvSymptoms(rel_effects_event_symptoms rel)
         {
             var result = await this._sideEffectsService.saveAdvSymptomsSideEffects(rel);

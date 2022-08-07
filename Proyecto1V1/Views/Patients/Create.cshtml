@@ -12,6 +12,7 @@
     <div class="col-md-4">
         <form id="patient_form" asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" class="form-control" />
             <div class="form-group">
                 <label asp-for="id_number" class="control-label">Número de cédula</label>
                 <input asp-for="id_number" class="form-control" />
@@ -103,7 +104,7 @@
             </div>
             <br />
             <div class="form-group">
-                <input type="submit" value="Registrar" class="btn btn-primary" />
+                <input type="submit" id="btn_patient" value="Registrar" class="btn btn-primary" />
             </div>
         </form>
     </div>

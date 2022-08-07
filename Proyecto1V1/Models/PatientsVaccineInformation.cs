@@ -48,5 +48,12 @@ namespace Proyecto1V1.Models
 
             return result;
         }
+
+        public async Task<PatientsVaccineInformation> Get(int? id)
+        {
+            var result = await this._patientsVaccineInformation.get(id);
+
+            return result;
+        }
     }
 }

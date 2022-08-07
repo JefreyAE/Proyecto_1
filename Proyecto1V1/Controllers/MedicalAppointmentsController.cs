@@ -32,6 +32,12 @@ namespace Proyecto1V1.Controllers
                 var patient_id = HttpContext.Session.GetInt32("patient_id");
                 var clinic_id = HttpContext.Session.GetInt32("clinic_id");
 
+                if (clinic_id == null)
+                {
+                    HttpContext.Session.SetInt32("clinic_id", 0);
+                    clinic_id = 0;
+                }
+
                 MedicalAppointments medicalAppointment = new MedicalAppointments();
 
                 medicalAppointment.patient_id = patient_id;
@@ -43,7 +49,7 @@ namespace Proyecto1V1.Controllers
 
                 return RedirectToAction("Create","Vaccines");
             }
-            catch
+            catch(Exception ex)
             {
                 return View();
             }

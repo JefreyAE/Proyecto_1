@@ -12,6 +12,7 @@
     <div class="col-md-4">
         <form id="medic_form" asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input value="" type="hidden" asp-for="id" class="form-control" />
             <div class="form-group">
                 <label asp-for="id_number" class="control-label">Número de cédula</label>
                 <input asp-for="id_number" class="form-control" />

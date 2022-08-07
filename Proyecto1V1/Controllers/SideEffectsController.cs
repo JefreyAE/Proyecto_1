@@ -41,6 +41,8 @@ namespace Proyecto1V1.Controllers
 
                 var mp = await sideEffects.Save();
 
+                HttpContext.Session.SetInt32("sideEffects_id", mp.id);
+
                 var advEventSymptoms = HttpContext.Session.GetString("advEventSymptoms");
                 var advEventObjects = JsonConvert.DeserializeObject<List<AdvEventSymptoms>>(advEventSymptoms);
                 if (advEventObjects != null)
@@ -55,7 +57,7 @@ namespace Proyecto1V1.Controllers
                     }
                 }
                 var alergies = HttpContext.Session.GetString("alergies");
-                var alergiesObjects = JsonConvert.DeserializeObject<List<Alergies>>(advEventSymptoms);
+                var alergiesObjects = JsonConvert.DeserializeObject<List<Alergies>>(alergies);
                 if (alergiesObjects != null)
                 {
                     foreach (var item in alergiesObjects)
@@ -96,7 +98,7 @@ namespace Proyecto1V1.Controllers
                     }
                 }
 
-                return RedirectToAction("/", "Index");
+                return RedirectToAction("Index", "Report");
             }
             catch
             {

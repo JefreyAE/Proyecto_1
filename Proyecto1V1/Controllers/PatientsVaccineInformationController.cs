@@ -46,6 +46,8 @@ namespace Proyecto1V1.Controllers
 
                 var p = await patient_information.Save();
 
+                HttpContext.Session.SetInt32("patient_information_id", p.id);
+
                 return RedirectToAction("Create", "AdvEventSymptoms");
             }
             catch

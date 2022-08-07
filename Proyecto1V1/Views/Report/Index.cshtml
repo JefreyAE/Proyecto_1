@@ -1,0 +1,480 @@
+﻿
+
+@{
+    ViewData["Title"] = "Reporte";
+    Medics medic = ViewBag.medic;
+    Clinics clinic = ViewBag.clinic;
+    Patients patient = ViewBag.patient;
+    MedicalAppointments medicalAppointment = ViewBag.medicalAppointment;
+    PatientsVaccineInformation patientsVaccineInformation = ViewBag.patientVaccioneInformation;
+    SideEffects sideEffect = ViewBag.sideEffects;
+    List<Vaccines> vaccinesList = ViewBag.vaccionesList;
+    List<AdvEventSymptoms> advEventSymptomsList = ViewBag.advEventsSymptomsList;
+    List<Alergies> alergiesList = ViewBag.alergiesList;
+    List<NewDiseases> newDiseaseList = ViewBag.newDiseasesList;
+    List<Symptoms> symptomsList = ViewBag.symptomsList;
+}
+
+<h1>Reporte de la consulta</h1>
+<br />
+<h2>Médico que realiza la consulta</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Identificación
+            </th>
+            <th>
+                Código profesional
+            </th>
+            <th>
+                Nombre completo
+            </th>
+            <th>
+                Correo electrónico
+            </th>
+            <th>
+                País
+            </th>
+            <th>
+                Provincia
+            </th>
+            <th>
+                Cantón
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @medic.id_number
+            </td>
+            <td>
+                @medic.professional_code
+            </td>
+            <td>
+                @medic.full_name
+            </td>
+            <td>
+                @medic.email
+            </td>
+            <td>
+               @medic.country
+            </td>
+            <td>
+                @medic.province
+            </td>
+            <td>
+                @medic.canton
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br />
+
+<h2>Clinica donde se realiza la consulta</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre de la clínica
+            </th>
+            <th>
+                Cédula jurídica
+            </th>
+            <th>
+                País
+            </th>
+            <th>
+                Provincia
+            </th>
+            <th>
+                Cantón
+            </th>
+            <th>
+                Distrito
+            </th>
+            <th>
+                Teléfono administrativo
+            </th>
+            <th>
+                Correo electrónico
+            </th>
+            <th>
+                Sitio Web
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @clinic.name
+            </td>
+            <td>
+                @clinic.legal_certificate
+            </td>
+            <td>
+                @clinic.country
+            </td>
+            <td>
+                @clinic.province
+            </td>
+            <td>
+                @clinic.canton
+            </td>
+            <td>
+                @clinic.district
+            </td>
+            <td>
+                @clinic.phone_number
+            </td>
+            <td>
+                @clinic.email
+            </td>
+            <td>
+                <a href="@clinic.web_site">@clinic.web_site</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br />
+
+<h2>Datos del paciente</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre del paciente
+            </th>
+            <th>
+                Número de identificación
+            </th>
+            <th>
+                Fecha de nacimiento
+            </th>
+            <th>
+                Sexo
+            </th>
+            <th>
+                Número de contacto
+            </th>
+            <th>
+                País
+            </th>
+            <th>
+                Provincia/estado
+            </th>
+            <th>
+                Cantón
+            </th>
+            <th>
+                Distrito
+            </th>
+            <th>
+                Estado civil
+            </th>
+            <th>
+                Teléfono
+            </th>
+            <th>
+                Correo electrónico
+            </th>
+            <th>
+                Fecha de registro
+            </th>
+            <th>
+                Ocupación u oficio
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @patient.name @patient.surname_1 @patient.surname_2
+            </td>
+            <td>
+                @patient.id_number
+            </td>
+            <td>
+                @patient.birth_date
+            </td>
+            <td>
+                @patient.gender
+            </td>
+            <td>
+                @patient.contact_number
+            </td>
+            <td>
+                @patient.country
+            </td>
+            <td>
+                @patient.province
+            </td>
+            <td>
+                @patient.canton
+            </td>
+            <td>
+                @patient.district
+            </td>
+            <td>
+                @patient.marital_status
+            </td>
+            <td>
+                @patient.phone_number
+            </td>
+            <td>
+                @patient.email
+            </td>
+            <td>
+                @patient.register_date
+            <td>
+                @patient.occupation
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br />
+<h2>Datos de la cita</h2>
+<h3>Fecha: @medicalAppointment.date</h3>
+<br />
+<h2>Vacunas COVID que se aplicó el paciente</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th>
+                Marca
+            </th>
+            <th>
+                Fecha de aplicación
+            </th>
+            <th>
+                Lugar de aplicación
+            </th>
+            <th>
+                Número de lote
+            </th>
+            <th>
+                Observaciones
+            </th>
+        </tr>
+    </thead>
+     <tbody>
+         @foreach (var item in vaccinesList)
+        {
+            <tr>
+                <td>
+                    @item.name
+                </td>
+                <td>
+                    @item.brand
+                </td>
+                <td>
+                    @item.application_date
+                </td>
+                <td>
+                    @item.application_place
+                </td>
+                <td>
+                    @item.lot_number
+                </td>
+                <td>
+                    @item.observations
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<br />
+<h2>Información previa del paciente</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ¿Ha tenido COVID previo a inyectarse?
+            </th>
+            <th>
+                ¿Ha tenido sospecha de haber tenido COVID antes de ponerte la
+inyección?
+            </th>
+            <th>
+                ¿Ha tenido COVID después de tomar la inyección?
+            </th>
+            <th>
+                ¿Razón de inyectarse contra COVID?
+            </th>
+            <th>
+                ¿Estaba embarazada al inyectarse contra COVID? Si aplica
+            </th>
+            <th>
+                ¿Ha tenido reacciones a vacunas en el pasado?
+            </th>
+            <th>
+                Especifique las reacciones a vacunas en el pasado
+            </th>
+            <th>
+                Medicamentos actuales con receta: enumere todos los medicamentos y las
+dosis.
+            </th>
+            <th>
+                Nuevos medicamentos recetados que tuvieron que ser iniciados después
+de la(s) inyección(es) de COVID
+            </th> 
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @patientsVaccineInformation.cv_prv_inj
+            </td>
+            <td>
+                @patientsVaccineInformation.sp_cv_prv_inj
+            </td>
+            <td>
+                @patientsVaccineInformation.cv_bfr_inj
+            </td>
+            <td>
+                @patientsVaccineInformation.reason_inj
+            </td>
+            <td>
+                @patientsVaccineInformation.prg_cv_inj
+            </td>
+            <td>
+                @patientsVaccineInformation.vaccine_reactions
+            </td>
+            <td>
+                @patientsVaccineInformation.enum_reactions
+            </td>
+            <td>
+                @patientsVaccineInformation.actual_medicines
+            </td>
+            <td>
+                @patientsVaccineInformation.bfr_cv_medicines
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br />
+<h3>Como resultado de la aplicación de la vacuna o vacunas se experimentaron los siguientes efectos secundarios </h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Descripción detallada de las alergias
+            </th>
+            <th>
+                ¿Si ha desarrollado un nuevo cáncer o la reaparición de un cáncer existente
+después de la inyección de COVID, especifique el tipo de cáncer?
+            </th>
+            <th>
+                Otras condiciones
+            </th>
+            <th>
+                ¿Persisten los sintomas?
+            </th>   
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @sideEffect.alergies_description
+            </td>
+            <td>
+                @sideEffect.dev_cancer
+            </td>
+            <td>
+                @sideEffect.other_conditions
+            </td>
+            <td>
+                @sideEffect.symptoms_persists
+            </td> 
+        </tr>
+    </tbody>
+</table>
+
+<h3>Como resultado de la aplicación de la vacuna o vacunas se experimentaron los siguientes efectos adversos</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Descripción
+            </th>
+        </tr>
+    </thead>
+     <tbody>
+         @foreach (var item in advEventSymptomsList)
+        {
+            <tr>
+                <td>
+                    @item.description
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<h3>Como resultado de la aplicación de la vacuna o vacunas se experimentaron las siguientes alergias</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Descripción
+            </th>
+        </tr>
+    </thead>
+     <tbody>
+         @foreach (var item in alergiesList)
+        {
+            <tr>
+                <td>
+                    @item.description
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+<h3>Como resultado de la aplicación de la vacuna o vacunas se experimentaron las siguientes nuevas enfermedades</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Descripción
+            </th>
+        </tr>
+    </thead>
+     <tbody>
+         @foreach (var item in newDiseaseList)
+        {
+            <tr>
+                <td>
+                    @item.description
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<h3>Como resultado de la aplicación de la vacuna o vacunas se experimentaron siguientes sintomas</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Descripción
+            </th>
+        </tr>
+    </thead>
+     <tbody>
+         @foreach (var item in symptomsList)
+        {
+            <tr>
+                <td>
+                    @item.description
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,10 +1,10 @@
-
+DROP DATABASE proyecto1;
 CREATE DATABASE proyecto1;
 use proyecto1;
 
 CREATE TABLE Patients(
 	id	int IDENTITY(1,1) PRIMARY KEY,
-    id_number       nvarchar(100) NOT NULL,
+    id_number       nvarchar(100) UNIQUE NOT NULL,
 	name   nvarchar(100) NOT NULL,
 	surname_1		nvarchar(100),
 	surname_2       nvarchar(100) NOT NULL,
@@ -24,8 +24,8 @@ CREATE TABLE Patients(
 
 CREATE TABLE Medics(
 	id	int IDENTITY(1,1) PRIMARY KEY,
-    id_number       nvarchar(100) NOT NULL,
-    professional_code  nvarchar(100) NOT NULL,
+    id_number       nvarchar(100) UNIQUE NOT NULL,
+    professional_code  nvarchar(100) UNIQUE NOT NULL,
 	full_name       nvarchar(100) NOT NULL,
     email           nvarchar(100) NOT NULL,
 	country         nvarchar(100) NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE Medics(
 CREATE TABLE Clinics(
 	id	int IDENTITY(1,1) PRIMARY KEY,
     name            nvarchar(100) NOT NULL,
-    legal_certificate nvarchar(100) NOT NULL,
+    legal_certificate nvarchar(100) UNIQUE NOT NULL,
 	country         nvarchar(100) NOT NULL,
     province        nvarchar(100) NOT NULL,
 	canton			nvarchar(100) NOT NULL,
@@ -46,12 +46,16 @@ CREATE TABLE Clinics(
     web_site        nvarchar(100) NOT NULL,
 );
 
+SET IDENTITY_INSERT Clinics ON 
+INSERT INTO Clinics (id, name, legal_certificate,country,province,canton,district,phone_number,email,web_site) VALUES (0,'No register','No register','No register','No register','No register','No register','No register','No register','No register');
+SET IDENTITY_INSERT Clinics OFF
+
 
 CREATE TABLE MedicalAppointments(
 	id	int IDENTITY(1,1) PRIMARY KEY,
     patient_id      int NOT NULL,
     medic_id        int NOT NULL,
-    clinic_id       int NOT NULL,
+    clinic_id       int ,
     date            nvarchar(100) NOT NULL,
     CONSTRAINT fk_medical_appointments_patients FOREIGN KEY (patient_id) REFERENCES Patients(id),
     CONSTRAINT fk_medical_appointments_medics FOREIGN KEY (medic_id) REFERENCES Medics(id),
