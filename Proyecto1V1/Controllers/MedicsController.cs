@@ -75,7 +75,7 @@ namespace Proyecto1V1.Controllers
                     HttpContext.Session.SetInt32("medic_id", medic.id);
                 }
 
-                _mailService.SendEmail(collection["email"], "Registrado en el sistema de control de vacunación COVID", "Como resultado de una consulta ha sido registrado en el sistema");
+                _mailService.SendEmail(collection["email"], "Médico - Registrado en el sistema de control de vacunación COVID", "Como resultado de una consulta ha sido registrado en el sistema");
                 return RedirectToAction("Create", "Clinics");
 
             }
